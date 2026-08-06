@@ -1,3 +1,14 @@
+# DISCLAIMER
+This is a completely unofficial fork. Do not ask me, or Polyfrost for support. 
+## Is it safe?
+All of my changes are 100% visible here on GitHub, and the releases are built via GitHub actions. This is not malware, you can easily verify this for yourself by viewing the git history.
+## What does it do?
+It just eliminates the need for a Microsoft account.
+## I have an issue? What do I do!?
+Try to fix it yourself or use another solution. Again do **NOT** come to me or Polyfrost for support. 
+
+---
+
 <div align="center">
 
 <img src=".github/media/RepoBanner.png" alt="Repository Banner" />

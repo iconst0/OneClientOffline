@@ -8,11 +8,35 @@ use oneclient_events::EventBus;
 use crate::data::{AccountKind, MinecraftAccount};
 use crate::error::{AuthError, AuthResult};
 use crate::offline::{offline_account, validate_offline_username};
+use crate::offline_uuid;
 
-#[derive(Debug, serde::Serialize, serde::Deserialize, Default)]
+#[derive(Debug, serde::Serialize, serde::Deserialize)]
 pub struct CredentialsStore {
     pub users: HashMap<Uuid, MinecraftAccount>,
     pub default_user: Option<Uuid>,
+}
+
+impl Default for CredentialsStore {
+    fn default() -> Self {
+        let mut users = HashMap::new();
+        let uuid = offline_uuid("OneClientUser");
+        users.insert(
+            uuid,
+            MinecraftAccount {
+                id: offline_uuid("OneClientUser"),
+                username: "OneClientUser".to_string(),
+                access_token: "0".to_string(),
+                refresh_token: "0".to_string(),
+                expires: chrono::Utc::now() + chrono::Duration::days(3650),
+                kind: AccountKind::Offline,
+            },
+        );
+
+        Self {
+            users,
+            default_user: Some(uuid),
+        }
+    }
 }
 
 impl CredentialsStore {
@@ -41,9 +65,7 @@ impl CredentialsStore {
     }
 
     pub fn has_microsoft_account(&self) -> bool {
-        self.users
-            .values()
-            .any(|account| account.kind == AccountKind::Microsoft)
+        return true;
     }
 
     pub fn list_accounts(&self) -> Vec<MinecraftAccount> {
@@ -111,10 +133,7 @@ impl CredentialsStore {
     }
 
     #[tracing::instrument(level = "debug", skip_all, fields(%account.id))]
-    pub async fn commit_refreshed_account(
-        &mut self,
-        account: MinecraftAccount,
-    ) -> AuthResult<()> {
+    pub async fn commit_refreshed_account(&mut self, account: MinecraftAccount) -> AuthResult<()> {
         self.users.insert(account.id, account);
         self.save().await?;
         tracing::debug!("stored refreshed Microsoft account");

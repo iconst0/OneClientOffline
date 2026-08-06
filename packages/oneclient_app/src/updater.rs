@@ -27,12 +27,12 @@ fn update_prompt(version: &str) -> Prompt<UpdateAnswer> {
     .dismiss("Not now")
 }
 
-pub const UPDATER_PUBKEY: &str = "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDFGODk3MkMyMjg0MjFDMDUKUldRRkhFSW93bktKSHpkWjNEMXNzaDVINVpCTU8xSnhuK2RnV0dTZ2FkcFJWbG1zUkhGYTNjaUkK";
+pub const UPDATER_PUBKEY: &str = "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IERFMzQ1NUQ4RTk5QjNFM0IKUldRN1BwdnAyRlUwM2czSW5lM2ZzWXN3V1k3elVjdGQ4Nk9YekJSWWtEbmVJNHNyNXVldnl6MGQK";
 
 pub const UPDATER_ENDPOINT: &str =
-    "https://github.com/Polyfrost/OneLauncher/releases/latest/download/latest.json";
+    "https://github.com/iconst0/OneClientOffline/releases/latest/download/latest.json";
 
-pub const RELEASES_URL: &str = "https://github.com/Polyfrost/OneLauncher/releases/latest";
+pub const RELEASES_URL: &str = "https://github.com/iconst0/OneClientOffline/releases/latest";
 
 const PROGRESS_STEP: u64 = 256 * 1024;
 
